@@ -7,19 +7,21 @@ import java.text.*;
 public class Cuenta {
 
 private int numCuenta = 0;
-private String duenio = null;
+private Cliente duenio = null;
 private double saldo = 0;
 private static int sCantCuentas = 0;
 private Date fechaCreacion;
+private ArrayList<Operacion>operaciones;
+private int numOperaciones = 0;
 
 
-	public Cuenta(String pNombre, double pMonto ) {
+	public Cuenta(Cliente pDuenio, double pMonto ) {
+		operaciones = new ArrayList<Operacion> ();
 		sCantCuentas++ ;
 		setNumCuenta(sCantCuentas);
 		depositar(pMonto);
-		setDuenio(pNombre);
+		setDuenio(pDuenio);
 		setFechaCreacion();
-		
 				
 	}
 	
@@ -36,13 +38,13 @@ private Date fechaCreacion;
 	}
 
 
-	public String getDuenio() {
+	public Cliente getDuenio() {
 		return duenio;
 	}
 
 
-	public void setDuenio(String duenio) {
-		this.duenio = duenio;
+	public void setDuenio(Cliente pCliente) {
+		duenio = pCliente;
 	}
 
 
@@ -57,8 +59,11 @@ private Date fechaCreacion;
 
 	public String depositar(double pMonto){
 		saldo +=pMonto;
-		return "El saldo actual despues del deposito es: " + saldo;
+		Operacion nuevaOperacion = new Operacion (++numOperaciones, "deposito", pMonto);
+		operaciones.add(nuevaOperacion);
+		return "saldo actual despues del deposito es: " + saldo;
 	}
+
 	private boolean validarRetiro (double pMonto){
 		return pMonto <= saldo;
 	}
@@ -66,6 +71,8 @@ private Date fechaCreacion;
 	public String retirar (double pMonto){
 		if (validarRetiro(pMonto)){
 			saldo -= pMonto ; 
+			Operacion nuevaOperacion = new Operacion(++numOperaciones,"retiro",pMonto);
+			operaciones.add(nuevaOperacion);
 			return "El saldo actual despues del retiro es: "+ saldo;
 		}
 		else{
@@ -75,11 +82,17 @@ private Date fechaCreacion;
 	@Override
 	public String toString() {
 		String msg;
-		
 		msg = "Cuenta Numero: " +getNumCuenta() + "\n";
 		msg	+= "Fecha Creacion: " + getFechaCreacion() + "\n";
-		msg	+= "Duenno: " + getDuenio() + "\n";
-		msg	+= "Saldo" + getSaldo() + "\n";
+		msg	+= duenio.toString() ;
+		msg	+= "Saldo: C" + getSaldo() + "\n";
+		msg += "Registro de Operaciones" + "\n";
+		msg += "\tNumero\t"+"Fecha\t"+"\tOperacion\t"+"Monto"+"\n";
+		for (int i = 0; i <operaciones.size();i++)
+		{	
+				Operacion unaOp = (Operacion) operaciones.get(i);
+				msg += unaOp.toString();
+		}
 		return msg;
 	}
 	
