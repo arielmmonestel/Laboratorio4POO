@@ -4,7 +4,7 @@ package logicaDeNegocios;
 import java.util.*;
 import java.text.*;
 
-public class Cuenta {
+public abstract class Cuenta {
 
 private int numCuenta = 0;
 private Cliente duenio = null;
@@ -13,6 +13,7 @@ private static int sCantCuentas = 0;
 private Date fechaCreacion;
 private ArrayList<Operacion>operaciones;
 private int numOperaciones = 0;
+protected String tipoCuenta;
 
 
 	public Cuenta(Cliente pDuenio, double pMonto ) {
