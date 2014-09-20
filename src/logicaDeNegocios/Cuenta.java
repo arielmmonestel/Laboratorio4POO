@@ -21,7 +21,7 @@ protected String TipoCuenta;
 		//sCantCuentas++ ;
 		setTipoCuenta(pTipo);
 		setNumCuenta(pNumero);
-		operaciones = new ArrayList<Operaciones>();
+		operaciones = new ArrayList<Operacion>();
 		depositar(pMonto);
 		setDuenio(pDuenio);
 		setFechaCreacion();
@@ -32,10 +32,7 @@ protected String TipoCuenta;
 
 
 
-	private void setTipoCuenta(String pTipo) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 
 
@@ -100,7 +97,7 @@ protected String TipoCuenta;
 		msg	+= duenio.toString() ;
 		msg	+= "Saldo: C" + getSaldo() + "\n";
 		msg += "Registro de Operaciones" + "\n";
-		msg += "\tNumero\t"+"Fecha\t"+"\tOperacion\t"+"Monto"+"\n";
+		msg += "\tNumero\t"+"Fecha\t"+"\tOperacion\t"+"Monto\t"+"\n";
 		for (int i = 0; i <operaciones.size();i++)
 		{	
 				Operacion unaOp = (Operacion) operaciones.get(i);
@@ -125,7 +122,7 @@ protected String TipoCuenta;
 		return TipoCuenta;
 	}
 	
-	public void setTipoCuenta(){
+	public void setTipoCuenta(String pTipoCuenta){
 		this.TipoCuenta = pTipoCuenta;
 	}
 	public abstract String cobrarComisiones();
