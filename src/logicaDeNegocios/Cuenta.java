@@ -9,23 +9,34 @@ public abstract class Cuenta {
 protected int numCuenta = 0;
 protected Cliente duenio = null;
 protected double saldo = 0;
-protected static int sCantCuentas = 0;
+//protected static int sCantCuentas = 0;
 protected Date fechaCreacion;
 protected ArrayList<Operacion>operaciones;
 protected int numOperaciones = 0;
-protected String tipoCuenta;
+protected String TipoCuenta;
 
 
-	public Cuenta(Cliente pDuenio, double pMonto ) {
+	public Cuenta(String pTipo, int pNumero, Cliente pDuenio, double pMonto ) {
 		operaciones = new ArrayList<Operacion> ();
-		sCantCuentas++ ;
-		setNumCuenta(sCantCuentas);
+		//sCantCuentas++ ;
+		setTipoCuenta(pTipo);
+		setNumCuenta(pNumero);
+		operaciones = new ArrayList<Operaciones>();
 		depositar(pMonto);
 		setDuenio(pDuenio);
 		setFechaCreacion();
+		numOperaciones = 0;
 				
 	}
 	
+
+
+
+	private void setTipoCuenta(String pTipo) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 
@@ -84,6 +95,7 @@ protected String tipoCuenta;
 	public String toString() {
 		String msg;
 		msg = "Cuenta Numero: " +getNumCuenta() + "\n";
+		msg += "Tipo: "+ getTipoCuenta() + "\n" ;
 		msg	+= "Fecha Creacion: " + getFechaCreacion() + "\n";
 		msg	+= duenio.toString() ;
 		msg	+= "Saldo: C" + getSaldo() + "\n";
@@ -108,6 +120,15 @@ protected String tipoCuenta;
 		SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
 		return mascara.format(fechaCreacion);
 	}
+	
+	public String getTipoCuenta(){
+		return TipoCuenta;
+	}
+	
+	public void setTipoCuenta(){
+		this.TipoCuenta = pTipoCuenta;
+	}
+	public abstract String cobrarComisiones();
 	
 }
 
