@@ -6,13 +6,13 @@ import java.text.*;
 
 public abstract class Cuenta {
 
-private int numCuenta = 0;
-private Cliente duenio = null;
-private double saldo = 0;
-private static int sCantCuentas = 0;
-private Date fechaCreacion;
-private ArrayList<Operacion>operaciones;
-private int numOperaciones = 0;
+protected int numCuenta = 0;
+protected Cliente duenio = null;
+protected double saldo = 0;
+protected static int sCantCuentas = 0;
+protected Date fechaCreacion;
+protected ArrayList<Operacion>operaciones;
+protected int numOperaciones = 0;
 protected String tipoCuenta;
 
 
