@@ -6,8 +6,7 @@ public class CuentaAhorro extends Cuenta {
 	private static int scantCuentas = 0;
 	private double cuotaMantenimiento;
 	
-	public CuentaAhorro( Cliente pDuenio,
-			double pMonto) {
+	public CuentaAhorro( Cliente pDuenio,double pMonto) {
 		super("Cuenta de Ahorro", ++scantCuentas, pDuenio, pMonto);
 		setCuotaMantenimiento(300);//Cuota Mantenimiento por omision
 	}
